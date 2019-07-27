@@ -1,0 +1,42 @@
+<html>
+    <body>
+        <form action="/" method="POST" id="form">
+            <div class="form-group">
+                <label>email</label>
+                <input type="email" class="form-control" name="email">
+            </div>
+
+            <div class="form-group">
+                <label>password</label>
+                <input type="password" class="form-control" name="password">
+            </div>
+            
+            <input type="submit" value="submit" />
+            <script>
+            </script>
+        </form>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+        <script>
+            console.log('dupa');
+                $(document).ready(() => {
+                    console.log('ok')
+                    $('#form').submit((e)=>{
+                        console.log('' + JSON.stringify($('#form').serializeArray()))
+                        e.preventDefault();
+                        $.ajax({
+                            url : '/',
+                            type : 'post',
+                            contentType : 'application/json',
+                            data : JSON.stringify($('#form').serializeArray()),
+                            success : (response) => { // NOTE: this is to be invoked on succesful ajax response from the server
+                                console.log('successfully got response')
+                                console.log(response)
+                            } 
+                        })
+                    });
+
+                })
+        </script>
+    </body>
+</html>
+    
